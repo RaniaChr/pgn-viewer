@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PGN Viewer</title>
+    <script src="https://cdn.jsdelivr.net/npm/@mliebelt/pgn-viewer@3.6.0/lib/pgnvjs.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@mliebelt/pgn-viewer@3.6.0/lib/pgnvjs.css" rel="stylesheet"/>
+    <style>
+        body { font-family: sans-serif; margin: 2em; }
+        #board { margin: auto; }
+    </style>
+</head>
+<body>
+    <h2>Chess PGN Viewer</h2>
+    <div id="board"></div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const pgn = urlParams.get('pgn') || '1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5';
+        pgnvjs.init({
+            boardName: "board",
+            pgn: pgn,
+            theme: "blue",
+            showNotation: true,
+            pieceStyle: "merida"
+        });
+    </script>
+</body>
+</html>
