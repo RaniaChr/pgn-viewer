@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PGN Viewer</title>
+  <link rel="stylesheet" href="lib/pgnvjs.min.css" />
+  <script src="lib/pgnvjs.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #board {
+      max-width: 600px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="board"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const pgn = urlParams.get("pgn") || "1. e4 e5 2. Nf3 Nc6 3. Bb5";
+      if (typeof pgnvjs !== "undefined") {
+        pgnvjs.board({
+          id: "board",
+          pgn: pgn,
+          layout: "top",
+          showFen: false,
+          showCoordinates: true,
+        });
+      } else {
+        document.getElementById("board").innerText = "Failed to load PGN viewer.";
+      }
+    });
+  </script>
+</body>
+</html>
